@@ -1,7 +1,7 @@
 default: main shaders.metallib
 
 main: main.mm common.h
-	clang++ -std=c++11 -O0 -g -framework Cocoa -framework Metal -framework MetalKit -fobjc-arc $< -o $@
+	clang++ -std=c++11 -O3 -g -framework Cocoa -framework Metal -framework MetalKit -fobjc-arc $< -o $@
 
 %.air: %.metal common.h
 	xcrun -sdk macosx metal -c -o $@ $<
