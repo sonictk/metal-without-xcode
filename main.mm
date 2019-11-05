@@ -133,7 +133,7 @@ constexpr int uniformBufferCount = 3;
     };
     _vertexBuffer = [self.device newBufferWithBytes:verts
                                              length:sizeof(verts)
-                                            options:MTLResourceStorageModeShared]; // TODO: If set to private, program segfaults
+                                            options:MTLResourceStorageModeShared]; 
 
     // Create uniform buffers.
     for (int i = 0; i < uniformBufferCount; i++) {
