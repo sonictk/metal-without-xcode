@@ -84,7 +84,7 @@ constexpr int uniformBufferCount = 3;
 
     // Load shaders.
     NSError *error = nil;
-    _library = [self.device newLibraryWithFile: @"shaders.metallib" error:&error];
+    _library = [self.device newLibraryWithFile: @"/Users/sonictk/Git/thirdparty/metal-without-xcode/shaders.metallib" error:&error];
     if (!_library) {
         NSLog(@"Failed to load library. error %@", error);
         exit(0);
@@ -126,14 +126,14 @@ constexpr int uniformBufferCount = 3;
     }
 
     // Create vertices.
-    Vertex verts[] = {
+    static const Vertex verts[] = {
         Vertex{{-0.5, -0.5, 0}, {255, 0, 0, 255}},
         Vertex{{0, 0.5, 0}, {0, 255, 0, 255}},
         Vertex{{0.5, -0.5, 0}, {0, 0, 255, 255}}
     };
     _vertexBuffer = [self.device newBufferWithBytes:verts
                                              length:sizeof(verts)
-                                            options:MTLResourceStorageModePrivate];
+                                            options:MTLResourceStorageModeShared]; // TODO: If set to private, program segfaults
 
     // Create uniform buffers.
     for (int i = 0; i < uniformBufferCount; i++) {
